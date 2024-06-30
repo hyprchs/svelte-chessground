@@ -1,9 +1,9 @@
 {
 	"name": "@jacksonthall22/svelte-chessground",
-  "version": "0.0.1",
-  "publishConfig": {
-    "access": "public"
-  },
+	"version": "0.0.3",
+	"publishConfig": {
+		"access": "public"
+	},
 	"description": "Svelte chessboard component. A Svelte wrapper for the full-featured Chessground chess UI.",
 	"keywords": [
 		"chess",
@@ -53,6 +53,6 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"chessground": "^8.3.9"
+		"chessground": "^9.1.1"
 	}
 }
