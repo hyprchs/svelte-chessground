@@ -1,7 +1,9 @@
 <script>
 	import { Chessground } from 'chessground';
 
-	import { onMount } from 'svelte';
+	import { onMount, createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
 
 
 	/**
@@ -155,6 +157,7 @@
 		if ( addDimensionsCssVarsTo !== undefined ) config.addDimensionsCssVarsTo = addDimensionsCssVarsTo;
 		if ( blockTouchScroll       !== undefined ) config.blockTouchScroll = blockTouchScroll;
 		chessground = Chessground( container, config );
+    dispatch('mounted', chessground);
 	});
 
 	/**
