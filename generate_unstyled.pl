@@ -2,7 +2,20 @@
 
 use 5.30.0;
 use warnings;
-use File::Slurper qw/read_text write_text/;
+
+sub read_text {
+	my ($path) = @_;
+	open my $fh, '<', $path or die "Failed to read $path: $!";
+	local $/;
+	return <$fh>;
+}
+
+sub write_text {
+	my ( $path, $contents ) = @_;
+	open my $fh, '>', $path or die "Failed to write $path: $!";
+	print {$fh} $contents or die "Failed to write $path: $!";
+	return 1;
+}
 
 my $unstyled = read_text( 'src/lib/Chessground.svelte' );
 

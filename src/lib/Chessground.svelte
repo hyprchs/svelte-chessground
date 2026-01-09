@@ -1,5 +1,5 @@
 <script>
-	import { Chessground } from 'chessground';
+	import { Chessground } from '@lichess-org/chessground';
 
 	import { onMount, createEventDispatcher } from 'svelte';
 
@@ -28,21 +28,21 @@
 
 	/** 
 	 * Chess position in Forsyth-Edwards notation.
-	 * @type {import('chessground/types').FEN | undefined}
+	 * @type {import('@lichess-org/chessground/types').FEN | undefined}
 	 */
 	export let fen = undefined;
 	$: setConfig( { fen: fen } );
 
 	/**
 	 * Board orientation: white or black.
-	 * @type {import('chessground/types').Color | undefined}
+	 * @type {import('@lichess-org/chessground/types').Color | undefined}
 	 */
 	export let orientation = undefined;
 	$: setConfig( { orientation: orientation } );
 
 	/**
 	 * Side to play: white or black.
-	 * @type {import('chessground/types').Color | undefined}
+	 * @type {import('@lichess-org/chessground/types').Color | undefined}
 	 */
 	export let turnColor = undefined;
 	$: setConfig( { turnColor: turnColor } );
@@ -50,21 +50,21 @@
 	/**
 	 * Color in check, for highlighting the square. True for the current
 	 * color, or false to unset.
-	 * @type {import('chessground/types').Color | boolean | undefined}
+	 * @type {import('@lichess-org/chessground/types').Color | boolean | undefined}
 	 */
 	export let check = undefined;
 	$: setConfig( { check: check } );
 
 	/**
 	 * Squares of the last move, for highlighting.
-	 * @type {import('chessground/types').Key[] | undefined}
+	 * @type {import('@lichess-org/chessground/types').Key[] | undefined}
 	 */
 	export let lastMove = undefined;
 	$: setConfig( { lastMove: lastMove } );
 
 	/**
 	 * Square currently selected.
-	 * @type {import('chessground/types').Key | undefined}
+	 * @type {import('@lichess-org/chessground/types').Key | undefined}
 	 */
 	export let selected = undefined;
 	$: setConfig( { selected: selected } );
@@ -124,7 +124,7 @@
 	 * props: highlight, animation, movable, premovable, predroppable,
 	 * draggable, selectable, events and drawable.
 	 * https://github.com/lichess-org/chessground/blob/master/src/api.ts
-	 * @type {import('chessground/config').Config}
+	 * @type {import('@lichess-org/chessground/config').Config}
 	 */
 	export let config = {};
 	$: setConfig( config );
@@ -139,7 +139,7 @@
 	/** @type {HTMLDivElement} */
 	let container;
 
-	/** @type {import('chessground/api').Api} */
+	/** @type {import('@lichess-org/chessground/api').Api} */
 	let chessground;
 
 	onMount(async () => {
@@ -162,7 +162,7 @@
 
 	/**
 	 * Set config values if component is mounted. Used for reactive props.
-	 * @param {import('chessground/config').Config} config - object of key(s) and value(s) to set.
+	 * @param {import('@lichess-org/chessground/config').Config} config - object of key(s) and value(s) to set.
 	 * @returns {void}
 	 */
 	function setConfig( config ) {
@@ -179,7 +179,7 @@
 
 	/**
 	 * Set config values. Alternative to using the config prop.
-	 * @param {import('chessground/config').Config} config - object of key(s) and value(s) to set.
+	 * @param {import('@lichess-org/chessground/config').Config} config - object of key(s) and value(s) to set.
 	 * @returns {void}
 	 */
 	export function set(config) {
@@ -189,7 +189,7 @@
 	/** 
 	 * Internal Chessground state, described at
 	 * https://github.com/lichess-org/chessground/blob/master/src/state.ts
-	 * @returns {import('chessground/state').State} - Chessground state
+	 * @returns {import('@lichess-org/chessground/state').State} - Chessground state
 	 */
 	export function getState() {
 		return chessground.state;
@@ -198,7 +198,7 @@
 	/** 
 	 * Current position as a FEN string. Contains only pieces, no flags.
 	 * e.g. "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
-	 * @returns {import('chessground/types').FEN} - FEN string
+	 * @returns {import('@lichess-org/chessground/types').FEN} - FEN string
 	 */
 	export function getFen() {
 		return chessground.getFen();
@@ -215,8 +215,8 @@
 
 	/**
 	 * Perform a move programmatically.
-	 * @param {import('chessground/types').Key} orig - Origin square.
-	 * @param {import('chessground/types').Key} dest - Destination square.
+	 * @param {import('@lichess-org/chessground/types').Key} orig - Origin square.
+	 * @param {import('@lichess-org/chessground/types').Key} dest - Destination square.
 	 * @returns {void}
 	 */
 	export function move( orig, dest ) {
@@ -225,7 +225,7 @@
 
 	/**
 	 * Add and/or remove arbitrary pieces on the board.
-	 * @param {import('chessground/types').PiecesDiff} pieces - Pieces to add/remove.
+	 * @param {import('@lichess-org/chessground/types').PiecesDiff} pieces - Pieces to add/remove.
 	 * @returns {void}
 	 */
 	export function setPieces( pieces ) {
@@ -234,7 +234,7 @@
 
 	/**
 	 * Click a square programmatically. 
-	 * @param {import('chessground/types').Key | null } key - Square to click.
+	 * @param {import('@lichess-org/chessground/types').Key | null } key - Square to click.
 	 * @param {boolean} [force] - Click even if the squares are not selectable (config.selectable).
 	 * @returns {void}
 	 */
@@ -244,8 +244,8 @@
 
 	/**
 	 * Put a new piece on the board.
-	 * @param {import('chessground/types').Piece } piece - Piece to place.
-	 * @param {import('chessground/types').Key } key - Square to place the piece.
+	 * @param {import('@lichess-org/chessground/types').Piece } piece - Piece to place.
+	 * @param {import('@lichess-org/chessground/types').Key } key - Square to place the piece.
 	 * @returns {void}
 	 */
 	export function newPiece( piece, key ) {
@@ -270,7 +270,7 @@
 
 	/**
 	 * Play the current predrop, if any.
-	 * @param {(drop: import('chessground/types').Drop) => boolean } validate - Predicate to decide whether a drop is valid.
+	 * @param {(drop: import('@lichess-org/chessground/types').Drop) => boolean } validate - Predicate to decide whether a drop is valid.
 	 * @returns {boolean} - True if a predrop was played.
 	 */
 	export function playPredrop( validate ) {
@@ -303,7 +303,7 @@
 
 	/**
 	 * Make squares explode (for atomic chess).
-	 * @param {import('chessground/types').Key[] } keys - Squares to explode.
+	 * @param {import('@lichess-org/chessground/types').Key[] } keys - Squares to explode.
 	 * @returns {void}
 	 */
 	export function explode( keys ) {
@@ -312,7 +312,7 @@
 
 	/**
 	 * Programmatically draw user shapes.
-	 * @param {import('chessground/draw').DrawShape[] } shapes - Shapes to draw.
+	 * @param {import('@lichess-org/chessground/draw').DrawShape[] } shapes - Shapes to draw.
 	 * @returns {void}
 	 */
 	export function setShapes( shapes ) {
@@ -321,7 +321,7 @@
 
 	/**
 	 * Programmatically draw auto shapes.
-	 * @param {import('chessground/draw').DrawShape[] } shapes - Shapes to draw.
+	 * @param {import('@lichess-org/chessground/draw').DrawShape[] } shapes - Shapes to draw.
 	 * @returns {void}
 	 */
 	export function setAutoShapes( shapes ) {
@@ -338,8 +338,8 @@
 
 	/**
 	 * Drag new piece, for crazyhouse and board editors.
-	 * @param {import('chessground/types').Piece } piece - Piece to drop
-	 * @param {import('chessground/types').MouchEvent } event - The mouse/touch event identifying a target.
+	 * @param {import('@lichess-org/chessground/types').Piece } piece - Piece to drop
+	 * @param {import('@lichess-org/chessground/types').MouchEvent } event - The mouse/touch event identifying a target.
 	 * @param {boolean} [force] - True if the new piece can replace an existing one.
 	 * @returns {void}
 	 */
