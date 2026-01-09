@@ -22,6 +22,17 @@ Display a chessboard where any pieces can be moved:
     </script>    
 
     <Chessground />
+
+Listen for the `mounted` event to know when the underlying Chessground API instance is ready:
+
+    <script>
+        import {Chessground} from 'svelte-chessground';
+        function onMounted(e) {
+            const chessground = e.detail; // Chessground API instance
+        }
+    </script>
+
+    <Chessground on:mounted={onMounted} />
     
 The component expands to maximum width.
 Chessground is extensively configurable through props. Parameters and descriptions can be found in the original Chessground's [config.ts](https://github.com/lichess-org/chessground/blob/master/src/config.ts). For instance, to display a specific position and flip the board:

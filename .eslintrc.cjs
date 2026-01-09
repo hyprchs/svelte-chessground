@@ -4,7 +4,8 @@ module.exports = {
 	plugins: ['svelte', 'jsdoc'],
 	overrides: [
 		{
-			files: ['*.svelte'],
+			files: ['**/*.svelte'],
+			parser: 'svelte-eslint-parser',
 			rules: {
 				'no-mixed-spaces-and-tabs': 'off'
 			}

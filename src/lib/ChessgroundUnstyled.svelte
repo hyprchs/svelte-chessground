@@ -5,7 +5,12 @@
 
 	import { onMount, createEventDispatcher } from 'svelte';
 
-  const dispatch = createEventDispatcher();
+	/**
+	 * Fired once Chessground has mounted and the API is available.
+	 * `event.detail` is the Chessground API instance.
+	 * @type {import('svelte').EventDispatcher<{ mounted: import('@lichess-org/chessground/api').Api }>}
+	 */
+	const dispatch = createEventDispatcher();
 
 
 	/**
