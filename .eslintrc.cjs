@@ -1,8 +1,16 @@
 module.exports = {
 	root: true,
-	extends: ['eslint:recommended','plugin:jsdoc/recommended'],
-	plugins: ['svelte3','jsdoc'],
-	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
+	extends: ['eslint:recommended', 'plugin:svelte/recommended', 'plugin:jsdoc/recommended'],
+	plugins: ['svelte', 'jsdoc'],
+	overrides: [
+		{
+			files: ['**/*.svelte'],
+			parser: 'svelte-eslint-parser',
+			rules: {
+				'no-mixed-spaces-and-tabs': 'off'
+			}
+		}
+	],
 	parserOptions: {
 		sourceType: 'module',
 		ecmaVersion: 2020
